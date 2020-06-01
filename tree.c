@@ -1,6 +1,7 @@
 #include "tree.h"
 
-Node_ptr create_node(int value){
+Node_ptr create_node(int value)
+{
   Node_ptr new_node = malloc(sizeof(Node));
   new_node->value = value;
   new_node->left = NULL;
@@ -15,12 +16,14 @@ Tree_ptr create_tree(void)
   return tree;
 }
 
-void insert_node(Tree_ptr tree, int value){
+void insert_node(Tree_ptr tree, int value)
+{
   Node_ptr p_walk = tree->root;
   Node_ptr *ptr_to_set = &tree->root;
   while (p_walk != NULL)
   {
-    if(value < p_walk->value){
+    if (value < p_walk->value)
+    {
       ptr_to_set = &p_walk->left;
       p_walk = p_walk->left;
     }
@@ -33,7 +36,8 @@ void insert_node(Tree_ptr tree, int value){
   *ptr_to_set = create_node(value);
 }
 
-void in_order(Tree_ptr tree){
+void in_order(Tree_ptr tree)
+{
   if (tree->root == NULL)
   {
     return;
@@ -47,6 +51,46 @@ void in_order(Tree_ptr tree){
   in_order(left_tree);
   printf("%d\n", tree->root->value);
   in_order(right_tree);
+
+  free(left_tree);
+  free(right_tree);
+}
+
+void pre_order(Tree_ptr tree)
+{
+  if (tree->root == NULL)
+  {
+    return;
+  }
+
+  Tree_ptr left_tree = create_tree();
+  Tree_ptr right_tree = create_tree();
+  left_tree->root = tree->root->left;
+  right_tree->root = tree->root->right;
+
+  printf("%d\n", tree->root->value);
+  in_order(left_tree);
+  in_order(right_tree);
+
+  free(left_tree);
+  free(right_tree);
+}
+
+void post_order(Tree_ptr tree)
+{
+  if (tree->root == NULL)
+  {
+    return;
+  }
+
+  Tree_ptr left_tree = create_tree();
+  Tree_ptr right_tree = create_tree();
+  left_tree->root = tree->root->left;
+  right_tree->root = tree->root->right;
+
+  in_order(left_tree);
+  in_order(right_tree);
+  printf("%d\n", tree->root->value);
 
   free(left_tree);
   free(right_tree);
