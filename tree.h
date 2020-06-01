@@ -4,6 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum
+{
+  False,
+  True
+} Bool;
+
 typedef struct node
 {
   int value;
@@ -22,6 +28,7 @@ typedef Tree *Tree_ptr;
 
 Node_ptr create_node(int value);
 Tree_ptr create_tree(void);
+Bool search(Tree_ptr tree, int value);
 void insert_node(Tree_ptr tree, int value);
 void in_order(Tree_ptr tree);
 void pre_order(Tree_ptr tree);
