@@ -54,6 +54,44 @@ Bool search(Node_ptr tree, int value)
   return flag;
 }
 
+Node_ptr min_value_node(Node_ptr node){
+   Node_ptr current = node;
+   while (current && current->left != NULL)
+      current = current->left;
+   return current;
+}
+
+Node_ptr delete_node(Node_ptr tree, int value){
+  
+  if(tree == NULL) return tree;
+
+  if(value < tree->value){
+     tree->left = delete_node(tree->left, value);
+     return tree;
+  }
+
+  if(value > tree->value){
+     tree->right = delete_node(tree->right, value);
+     return tree;
+  }
+
+  if(tree->left == NULL){
+    Node_ptr temp = tree->right;
+    free(tree);
+    return temp;
+  }
+    
+  if(tree->right == NULL){
+    Node_ptr temp = tree->left;
+    free(tree);
+    return temp;
+  }
+
+  Node_ptr min_node = min_value_node(tree->right);
+  tree->value = min_node->value;
+  tree->right =  delete_node(tree->right, min_node->value);
+  return tree;
+}
 
 void in_order(Node_ptr tree)
 {

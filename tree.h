@@ -22,6 +22,8 @@ typedef Node *Node_ptr;
 Node_ptr create_node(int value);
 Bool search(Node_ptr tree, int value);
 void insert_node(Node_ptr tree, int value);
+Node_ptr min_value_node(Node_ptr node);
+Node_ptr delete_node(Node_ptr tree, int value);
 void in_order(Node_ptr tree);
 void pre_order(Node_ptr tree);
 void post_order(Node_ptr tree);
