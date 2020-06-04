@@ -14,6 +14,17 @@ const insert = (tree, value) => {
   return tree;
 };
 
+const search_node = (tree, value) => {
+  let result = false;
+  let walker = tree;
+  while (walker != null && !result) {
+    if (value == walker.value) result = true;
+    if (value < walker.value) walker = walker.left;
+    else walker = walker.right;
+  }
+  return result;
+};
+
 const printInOrder = tree => {
   if (tree == null) {
     return;
