@@ -19,19 +19,11 @@ typedef struct node
 
 typedef Node *Node_ptr;
 
-typedef struct
-{
-  Node_ptr root;
-} Tree;
-
-typedef Tree *Tree_ptr;
-
 Node_ptr create_node(int value);
-Tree_ptr create_tree(void);
-Bool search(Tree_ptr tree, int value);
-void insert_node(Tree_ptr tree, int value);
-void in_order(Tree_ptr tree);
-void pre_order(Tree_ptr tree);
-void post_order(Tree_ptr tree);
+Bool search(Node_ptr tree, int value);
+void insert_node(Node_ptr tree, int value);
+void in_order(Node_ptr tree);
+void pre_order(Node_ptr tree);
+void post_order(Node_ptr tree);
 
 #endif

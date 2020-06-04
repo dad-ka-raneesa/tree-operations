@@ -2,13 +2,12 @@
 
 int main(void)
 {
-  Tree_ptr tree = create_tree();
-  insert_node(tree, 8);
+  Node_ptr tree = create_node(8);
   insert_node(tree, 6);
   insert_node(tree, 20);
   insert_node(tree, 2);
   insert_node(tree, 9);
-  insert_node(tree, 15);
+  insert_node(tree, 7);
   insert_node(tree, 25);
   printf("in_order:\n");
   in_order(tree);
