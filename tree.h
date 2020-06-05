@@ -20,12 +20,12 @@ typedef struct node
 typedef Node *Node_ptr;
 
 Node_ptr create_node(int value);
-Bool search(Node_ptr tree, int value);
-void insert_node(Node_ptr tree, int value);
+Bool search(Node_ptr root, int value);
+void insert_node(Node_ptr root, int value);
 Node_ptr min_value_node(Node_ptr node);
-Node_ptr delete_node(Node_ptr tree, int value);
-void in_order(Node_ptr tree);
-void pre_order(Node_ptr tree);
-void post_order(Node_ptr tree);
+Node_ptr delete_node(Node_ptr root, int value);
+void in_order(Node_ptr root);
+void pre_order(Node_ptr root);
+void post_order(Node_ptr root);
 
 #endif
