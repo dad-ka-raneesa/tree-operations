@@ -27,5 +27,6 @@ Node_ptr delete_node(Node_ptr root, int value);
 void in_order(Node_ptr root);
 void pre_order(Node_ptr root);
 void post_order(Node_ptr root);
+Node_ptr rotate_node_right(Node_ptr root, Node_ptr pivot);
 
 #endif

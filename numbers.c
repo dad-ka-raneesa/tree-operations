@@ -24,5 +24,13 @@ int main(void)
   tree = delete_node(tree, 0);
   printf("\nin_order traversal of modifed tree after deletion of non existed node:\n");
   in_order(tree);
+
+  tree = rotate_node_right(tree, tree->left);
+  printf("\npre_order traversal of modifed tree after rotated given node right:\n");
+  pre_order(tree);
+
+  tree = rotate_node_right(tree, tree);
+  printf("\npre_order traversal of modifed tree after rotated given node right:\n");
+  pre_order(tree);
   return 0;
 }

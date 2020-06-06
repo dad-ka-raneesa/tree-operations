@@ -95,10 +95,7 @@ Node_ptr delete_node(Node_ptr root, int value){
 
 void in_order(Node_ptr root)
 {
-  if (root == NULL)
-  {
-    return;
-  }
+  if (root == NULL) return;
 
   in_order(root->left);
   printf("%d\n", root->value);
@@ -107,10 +104,7 @@ void in_order(Node_ptr root)
 
 void pre_order(Node_ptr root)
 {
-  if (root == NULL)
-  {
-    return;
-  }
+  if (root == NULL) return;
 
   printf("%d\n", root->value);
   in_order(root->left);
@@ -119,12 +113,32 @@ void pre_order(Node_ptr root)
 
 void post_order(Node_ptr root)
 {
-  if (root == NULL)
-  {
-    return;
-  }
+  if (root == NULL) return;
 
   in_order(root->left);
   in_order(root->right);
   printf("%d\n", root->value);
+}
+
+Node_ptr rotate_node_right(Node_ptr root, Node_ptr pivot){
+  if(root == NULL) return root;
+
+  if(pivot->value < root->value){
+    root->left = rotate_node_right(root->left, pivot);
+    return root;
+  }
+
+  if(pivot->value > root->value){
+    root->right = rotate_node_right(root->right, pivot);
+    return root;
+  }
+
+  Node_ptr pivot_left = pivot->left;
+  if(pivot_left == NULL) return root;
+
+  Node_ptr temp = pivot_left->right;
+  pivot_left->right = pivot;
+  pivot->left = temp;
+
+  return pivot_left; 
 }
