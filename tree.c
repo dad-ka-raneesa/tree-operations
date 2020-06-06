@@ -142,3 +142,27 @@ Node_ptr rotate_node_right(Node_ptr root, Node_ptr pivot){
 
   return pivot_left; 
 }
+
+
+Node_ptr rotate_node_left(Node_ptr root, Node_ptr pivot){
+  if(root == NULL) return root;
+
+  if(pivot->value < root->value){
+    root->left = rotate_node_left(root->left, pivot);
+    return root;
+  }
+
+  if(pivot->value > root->value){
+    root->right = rotate_node_left(root->right, pivot);
+    return root;
+  }
+
+  Node_ptr pivot_right = pivot->right;
+  if(pivot_right == NULL) return root;
+
+  Node_ptr temp = pivot_right->left;
+  pivot_right->left = pivot;
+  pivot->right = temp;
+
+  return pivot_right; 
+}

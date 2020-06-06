@@ -28,5 +28,6 @@ void in_order(Node_ptr root);
 void pre_order(Node_ptr root);
 void post_order(Node_ptr root);
 Node_ptr rotate_node_right(Node_ptr root, Node_ptr pivot);
+Node_ptr rotate_node_left(Node_ptr root, Node_ptr pivot);
 
 #endif
