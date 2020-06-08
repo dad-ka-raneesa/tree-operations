@@ -3,12 +3,12 @@
 int main(void)
 {
   Node_ptr root = create_node(8);
-  insert_node(root, 6);
-  insert_node(root, 20);
-  insert_node(root, 2);
-  insert_node(root, 9);
-  insert_node(root, 7);
-  insert_node(root, 25);
+  root = insert_node(root, 6);
+  root = insert_node(root, 20);
+  root = insert_node(root, 2);
+  root = insert_node(root, 9);
+  root = insert_node(root, 7);
+  root = insert_node(root, 25);
 
   printf("in_order:\n");
   in_order(root);
@@ -40,6 +40,27 @@ int main(void)
   root = rotate_node_left(root, root->left);
   printf("\npre_order traversal of modifed tree after rotated given node left:\n");
   pre_order(root);
+
+  root = NULL;
+  root = insert_node(root, 1);
+  root = insert_node(root, 0);
+  root = insert_node(root, 2);
+  root = insert_node(root, 3);
+  root = insert_node(root, 4);
+  root = insert_node(root, 5);
+  root = insert_node(root, 6);
+
+  printf("\nBefore Balancing:\n");
+
+  pre_order(root);
+  printf("\n\n");
+
+  root = balance_tree(root);
+
+  printf("After Balancing:\n");
+
+  pre_order(root);
+  printf("\n\n");
 
   return 0;
 }

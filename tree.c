@@ -9,24 +9,23 @@ Node_ptr create_node(int value)
   return new_node;
 }
 
-void insert_node(Node_ptr root, int value)
+Node_ptr insert_node(Node_ptr root, int value)
 {
   Node_ptr p_walk = root;
-  Node_ptr *ptr_to_set = &root;
+  Node_ptr *pos_to_insert = &root;
   while (p_walk != NULL)
   {
+    pos_to_insert = &p_walk->right;
+    Node_ptr p_walk_to_set = p_walk->right;
     if (value < p_walk->value)
     {
-      ptr_to_set = &p_walk->left;
-      p_walk = p_walk->left;
+      pos_to_insert = &p_walk->left;
+      p_walk_to_set = p_walk->left;
     }
-    else
-    {
-      ptr_to_set = &p_walk->right;
-      p_walk = p_walk->right;
-    }
+    p_walk = p_walk_to_set;
   }
-  *ptr_to_set = create_node(value);
+  *pos_to_insert = create_node(value);
+  return root;
 }
 
 Bool search(Node_ptr root, int value)
@@ -165,4 +164,34 @@ Node_ptr rotate_node_left(Node_ptr root, Node_ptr pivot){
   pivot->right = temp;
 
   return pivot_right; 
+}
+
+void store_nodes_in_array(Node_ptr root, Int_Array_ptr array)
+{
+  if(root == NULL) return;
+
+  store_nodes_in_array(root->left, array);
+  push_into_Int_Array(array, root->value);
+  store_nodes_in_array(root->right, array);
+}
+
+Node_ptr insert_array_into_tree(Node_ptr root, Int_Array_ptr array, int from, int to)
+{
+  for (int i = from; i < to; i++)
+  {
+    root = insert_node(root, array->values[i]);
+  }
+  return root;
+}
+
+Node_ptr balance_tree(Node_ptr root){
+  Node_ptr new_root = NULL;
+  Int_Array_ptr tree_nodes = create_Int_Array();
+  store_nodes_in_array(root, tree_nodes);
+  int pivot_index = (tree_nodes->length / 2);
+  new_root = insert_array_into_tree(new_root, tree_nodes, pivot_index, pivot_index + 1);
+  new_root = insert_array_into_tree(new_root, tree_nodes, 0, pivot_index);
+  new_root = insert_array_into_tree(new_root, tree_nodes, pivot_index + 1, tree_nodes->length);
+  destroy_Int_Array(tree_nodes);
+  return new_root;
 }
