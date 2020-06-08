@@ -1,4 +1,5 @@
 #include "tree.h"
+#include "traversals.h"
 
 int main(void)
 {
@@ -51,16 +52,10 @@ int main(void)
   root = insert_node(root, 6);
 
   printf("\nBefore Balancing:\n");
-
   pre_order(root);
-  printf("\n\n");
-
   root = balance_tree(root);
 
-  printf("After Balancing:\n");
-
+  printf("\nAfter Balancing:\n");
   pre_order(root);
-  printf("\n\n");
-
   return 0;
 }

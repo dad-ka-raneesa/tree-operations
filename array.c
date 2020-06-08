@@ -3,7 +3,7 @@
 Int_Array_ptr create_Int_Array()
 {
   Int_Array_ptr array = malloc(sizeof(Int_Array));
-  array->values = malloc(sizeof(int) * 0);
+  array->values = malloc(sizeof(int));
   array->length = 0;
   return array;
 }
