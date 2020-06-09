@@ -1,5 +1,5 @@
-#ifndef __BINARY_SEARCH_TREE__
-#define __BINARY_SEARCH_TREE__
+#ifndef __BINARY_SEARCH_TREE_H_
+#define __BINARY_SEARCH_TREE_H_
 
 #include "node.h"
 #include "array.h"
