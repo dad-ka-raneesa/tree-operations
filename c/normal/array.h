@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #ifndef __ARRAY_H_
 #define __ARRAY_H_
+
+#include <string.h>
+#include "node.h"
 
 typedef struct
 {

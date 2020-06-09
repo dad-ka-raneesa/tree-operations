@@ -71,7 +71,6 @@ Node_ptr rotate_node_right(Node_ptr root, Node_ptr pivot){
   Node_ptr temp = pivot_left->right;
   pivot_left->right = pivot;
   pivot->left = temp;
-
   return pivot_left; 
 }
 
@@ -95,7 +94,6 @@ Node_ptr rotate_node_left(Node_ptr root, Node_ptr pivot){
   Node_ptr temp = pivot_right->left;
   pivot_right->left = pivot;
   pivot->right = temp;
-
   return pivot_right; 
 }
 
