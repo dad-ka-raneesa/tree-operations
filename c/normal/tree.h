@@ -19,4 +19,6 @@ void store_nodes_in_array(Node_ptr root, Int_Array_ptr array);
 Node_ptr insert_array_into_tree(Node_ptr root, Int_Array_ptr array, int from, int to);
 Node_ptr balance_tree(Node_ptr root);
 
+void destroy_nodes(Node_ptr root);
+
 #endif

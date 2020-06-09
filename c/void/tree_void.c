@@ -145,11 +145,8 @@ Node_ptr balance_tree(Node_ptr root, Compare_Method *comparator)
 
 void destroy_nodes(Node_ptr root)
 {
-  if (root == NULL)
-    return;
+  if (root == NULL) return;
   destroy_nodes(root->left);
   destroy_nodes(root->right);
   free(root);
 }
-
-
