@@ -115,6 +115,30 @@ int main(void)
   pre_order(tree, &display_int_element);
   printf("\n\n");
 
+  destroy_nodes(tree);
+
+  tree = NULL;
+  tree = insert_node(tree, create_int_element(1), &comparator_int);
+  tree = insert_node(tree, create_int_element(0), &comparator_int);
+  tree = insert_node(tree, create_int_element(2), &comparator_int);
+  tree = insert_node(tree, create_int_element(3), &comparator_int);
+  tree = insert_node(tree, create_int_element(4), &comparator_int);
+  tree = insert_node(tree, create_int_element(5), &comparator_int);
+  tree = insert_node(tree, create_int_element(6), &comparator_int);
+
+  printf("Before Balancing\n");
+
+  pre_order(tree, &display_int_element);
+  printf("\n\n");
+
+  tree = balance_tree(tree, &comparator_int);
+
+  printf("After Balancing\n");
+
+  pre_order(tree, &display_int_element);
+  printf("\n\n");
+
+  destroy_nodes(tree);
   //----------------- char -------------------------
 
   tree = NULL;
@@ -169,5 +193,27 @@ int main(void)
   pre_order(tree, &display_char_element);
   printf("\n\n");
 
+  destroy_nodes(tree);
+
+  tree = NULL;
+  tree = insert_node(tree, create_char_element('b'), &comparator_char);
+  tree = insert_node(tree, create_char_element('a'), &comparator_char);
+  tree = insert_node(tree, create_char_element('c'), &comparator_char);
+  tree = insert_node(tree, create_char_element('d'), &comparator_char);
+  tree = insert_node(tree, create_char_element('e'), &comparator_char);
+  tree = insert_node(tree, create_char_element('f'), &comparator_char);
+  tree = insert_node(tree, create_char_element('g'), &comparator_char);
+
+  printf("Before Balancing\n");
+
+ pre_order(tree, &display_char_element);
+  printf("\n\n");
+
+  tree = balance_tree(tree, &comparator_char);
+
+  printf("After Balancing\n");
+
+ pre_order(tree, &display_char_element);
+  printf("\n\n");
   return 0;
 }
