@@ -55,7 +55,7 @@ int main(void)
   pre_order(root);
   root = balance_tree(root);
 
-  printf("\n\nAfter Balancing:\n");
+  printf("\nAfter Balancing:\n");
   pre_order(root);
   return 0;
 }
