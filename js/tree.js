@@ -1,90 +1,64 @@
-const createNode = value => {
-  return { value, left: null, right: null };
+const Traversals = require('./traversals');
+const {
+  insert_node,
+  search_node,
+  delete_node,
+  rotate_left,
+  rotate_right,
+  get_node_of,
+  balance_tree,
+} = require('./tree_with_recursion');
+
+const main = () => {
+  let values = [3, 1, 5, 0, 2, 4, 6];
+  let tree = values.reduce(insert_node, null);
+
+  console.log('tree =>');
+  Traversals.printInOrder(tree);
+
+  let result = search_node(tree, 3);
+  console.log(3, 'is', result ? '' : 'not', 'present in the tree.');
+
+  tree = delete_node(tree, 3);
+  console.log('tree =>');
+  Traversals.printInOrder(tree);
+
+  result = search_node(tree, 3);
+  console.log(3, 'is', result ? '' : 'not', 'present in the tree.');
+
+  tree = values.reduce(insert_node, null);
+  console.log('Rotate Right 1');
+  console.log('before =>');
+  Traversals.printPreOrder(tree);
+  tree = rotate_right(tree, get_node_of(tree, 1));
+  console.log('after =>');
+  Traversals.printPreOrder(tree);
+
+  console.log('Rotate Left 0');
+  console.log('before =>');
+  Traversals.printPreOrder(tree);
+  tree = rotate_left(tree, get_node_of(tree, 0));
+  console.log('after =>');
+  Traversals.printPreOrder(tree);
+
+  values = [1, 0, 2, 3, 4, 5, 6];
+  tree = values.reduce(insert_node, null);
+
+  console.log('Before Balancing');
+  Traversals.printPreOrder(tree);
+
+  tree = balance_tree(tree);
+
+  console.log('After Balancing');
+  Traversals.printPreOrder(tree);
 };
 
-const insert = (tree, value) => {
-  if (tree == null) {
-    return createNode(value);
-  }
-  if (value < tree.value) {
-    tree.left = insert(tree.left, value);
-  } else {
-    tree.right = insert(tree.right, value);
-  }
-  return tree;
-};
+main();
 
-const search_node = (tree, value) => {
-  let result = false;
-  let walker = tree;
-  while (walker != null && !result) {
-    if (value == walker.value) result = true;
-    if (value < walker.value) walker = walker.left;
-    else walker = walker.right;
-  }
-  return result;
-};
-
-const minOfRight = (root) => {
-  let p_walk = root;
-  while (p_walk.left != null) {
-    p_walk = p_walk.left;
-  }
-  return p_walk;
-};
-
-const deletion = (tree, value) => {
-  if (tree === null) {
-    return tree;
-  }
-  if (value < tree.value) {
-    tree.left = deletion(tree.left, value);
-    return tree;
-  }
-  if (value > tree.value) {
-    tree.right = deletion(tree.right, value);
-    return tree;
-  }
-  if (tree.left === null) {
-    let right_node = tree.right;
-    delete tree;
-    return right_node;
-  }
-  if (tree.right === null) {
-    let left_node = tree.left;
-    delete tree;
-    return left_node;
-  }
-  let min = minOfRight(tree.right);
-  tree.value = min.value;
-  tree.right = deletion(tree.right, min.value);
-  return tree;
-};
-
-
-const printInOrder = tree => {
-  if (tree == null) {
-    return;
-  }
-  printInOrder(tree.left);
-  console.log(tree.value);
-  printInOrder(tree.right);
-};
-
-const printPreOrder = tree => {
-  if (tree == null) {
-    return;
-  }
-  console.log(tree.value);
-  printPreOrder(tree.left);
-  printPreOrder(tree.right);
-};
-
-const printPostOrder = tree => {
-  if (tree == null) {
-    return;
-  }
-  printPostOrder(tree.left);
-  printPostOrder(tree.right);
-  console.log(tree.value);
-};
+/*
+     3
+   /   \
+  1     5
+ / \   / \
+0   2 4   6
+*/
