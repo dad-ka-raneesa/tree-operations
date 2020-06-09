@@ -4,7 +4,6 @@ Bool search(Node_ptr root, int value)
 {
   Node_ptr p_walk = root;
   Bool flag = False;
-  Node_ptr ptr_to_set = NULL;
 
   while (p_walk != NULL && !flag)
   {
@@ -13,12 +12,14 @@ Bool search(Node_ptr root, int value)
       flag = True;
     }
 
-    ptr_to_set = p_walk->right;
     if (value < p_walk->value)
     {
-      ptr_to_set = p_walk->left;
+      p_walk = p_walk->left;
     }
-    p_walk = ptr_to_set;
+    else
+    {
+      p_walk = p_walk->right;
+    }
   }
   
   return flag;
