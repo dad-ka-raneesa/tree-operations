@@ -69,6 +69,26 @@ int main(void)
   in_order(tree, &display_int_element);
   printf("\n\n");
 
+  printf("pre_order\n");
+  pre_order(tree, &display_int_element);
+  printf("\n\n");
+
+  printf("post_order\n");
+  post_order(tree, &display_int_element);
+  printf("\n\n");
+
+  Bool result = search_node(tree, create_int_element(3), &comparator_int);
+  printf("%d is %s in the list\n\n", 3, result ? "present" : "not present");
+
+  tree = delete_node(tree, create_int_element(3), &comparator_int);
+
+  printf("after deletion pre_order\n");
+  pre_order(tree, &display_int_element);
+  printf("\n\n");
+
+  result = search_node(tree, create_int_element(3), &comparator_int);
+  printf("%d is %s in the list\n\n", 3, result ? "present" : "not present");
+
   destroy_nodes(tree);
 
   //----------------- char -------------------------
@@ -85,5 +105,19 @@ int main(void)
   printf("in_order\n");
   in_order(tree, &display_char_element);
   printf("\n\n");
+
+
+  result = search_node(tree, create_char_element('c'), &comparator_char);
+  printf("%c is %s in the list\n\n", 'c', result ? "present" : "not present");
+
+  tree = delete_node(tree, create_char_element('c'), &comparator_char);
+
+  printf("after deletion pre_order\n");
+  pre_order(tree, &display_char_element);
+  printf("\n\n");
+
+  result = search_node(tree, create_char_element('c'), &comparator_char);
+  printf("%c is %s in the list\n\n", 'c', result ? "present" : "not present");
+
   return 0;
 }
