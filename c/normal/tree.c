@@ -35,31 +35,20 @@ Node_ptr delete_node(Node_ptr root, int value){
   
   if(root == NULL) return root;
 
-  if(value < root->value){
-     root->left = delete_node(root->left, value);
-     return root;
-  }
+  root->left = value < root->value ? delete_node(root->left, value) : root->left;
+  root->right = value > root->value ? delete_node(root->right, value) : root->right;
+  
+  if(value == root->value){
+    if(root->left == NULL || root->right == NULL){
+      Node_ptr temp = root->left ? root->left : root->right;;
+      free(root);
+      return temp;
+    }
 
-  if(value > root->value){
-     root->right = delete_node(root->right, value);
-     return root;
+    Node_ptr min_node = min_value_node(root->right);
+    root->value = min_node->value;
+    root->right =  delete_node(root->right, min_node->value);
   }
-
-  if(root->left == NULL){
-    Node_ptr temp = root->right;
-    free(root);
-    return temp;
-  }
-    
-  if(root->right == NULL){
-    Node_ptr temp = root->left;
-    free(root);
-    return temp;
-  }
-
-  Node_ptr min_node = min_value_node(root->right);
-  root->value = min_node->value;
-  root->right =  delete_node(root->right, min_node->value);
   return root;
 }
 
