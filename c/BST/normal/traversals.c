@@ -14,15 +14,15 @@ void pre_order(Node_ptr root)
   if (root == NULL) return;
 
   printf("%d ", root->value);
-  in_order(root->left);
-  in_order(root->right);
+  pre_order(root->left);
+  pre_order(root->right);
 }
 
 void post_order(Node_ptr root)
 {
   if (root == NULL) return;
 
-  in_order(root->left);
-  in_order(root->right);
+  post_order(root->left);
+  post_order(root->right);
   printf("%d  ", root->value);
 }
